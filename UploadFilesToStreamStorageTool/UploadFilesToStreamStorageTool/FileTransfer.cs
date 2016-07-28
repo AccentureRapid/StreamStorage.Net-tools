@@ -59,7 +59,7 @@ namespace UploadFilesToStreamStorageTool
                    }
                    catch (Exception ex)
                    {
-                       Console.WriteLine(String.Format("Error:File \"{0}\" upload to oss error!\r\n{1}\r\n{2}\r\n", file.FullName, ex.Message + ex.InnerException != null ? ex.InnerException.Message : "", ex.StackTrace));
+                       Console.WriteLine(String.Format("Error:File \"{0}\" upload to oss error!\r\n{1}\r\n{2}\r\n", file.FullName, ex.Message + (ex.InnerException != null ? ex.InnerException.Message : ""), ex.StackTrace));
                    }
 
                }
