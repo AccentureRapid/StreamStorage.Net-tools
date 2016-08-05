@@ -37,7 +37,7 @@ namespace UploadFilesToStreamStorageTool
 
         private async Task TransferAsync(string parentObjectPath, DirectoryInfo folder)
         {
-            string objectPath = parentObjectPath.TrimEnd('/') + "/" + folder.Name;
+            string objectPath = (parentObjectPath.TrimEnd('/') == "" ? "" : parentObjectPath.TrimEnd('/') + "/") + folder.Name;
             foreach (var subDirectory in folder.EnumerateDirectories())
             {
                 await TransferAsync(objectPath, subDirectory);
@@ -61,7 +61,6 @@ namespace UploadFilesToStreamStorageTool
                    {
                        Console.WriteLine(String.Format("Error:File \"{0}\" upload to oss error!\r\n{1}\r\n{2}\r\n", file.FullName, ex.Message + (ex.InnerException != null ? ex.InnerException.Message : ""), ex.StackTrace));
                    }
-
                }
            }).RunSynchronously();
         }
